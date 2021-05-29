@@ -6,6 +6,9 @@
   --green: #e8f09a;
   --violet: #b591fc;
 }
+body {
+  font-family: "Roboto", sans-serif;
+}
 
 .yellow {
   background-color: var(--yellow);
