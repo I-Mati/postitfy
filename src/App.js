@@ -5,30 +5,7 @@ import Sidebar from "./components/Sidebar";
 import "./App.css";
 
 const App = () => {
-  localStorage.setItem("pepe mujica", "socialista");
-  const [notes, setNotes] = useState([
-    {
-      id: 1,
-      text: "Lorem Ipsum",
-      color: "orange",
-      editing: false,
-      active: true,
-    },
-    {
-      id: 2,
-      text: "Lorem Ipsumasdsad",
-      color: "violet",
-      editing: false,
-      active: true,
-    },
-    {
-      id: 3,
-      text: "Editable",
-      color: "green",
-      editing: true,
-      active: true,
-    },
-  ]);
+  const [notes, setNotes] = useState([]);
 
   const handleEditing = (id, action, payload) => {
     let updatedNotes = notes;
