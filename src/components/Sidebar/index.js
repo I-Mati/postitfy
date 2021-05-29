@@ -6,11 +6,11 @@ import emptyBin from "../../assets/empty-bin.png";
 import fullBin from "../../assets/full-bin.png";
 import "./style.css";
 
-const Sidebar = ({ inTrash }) => (
+const Sidebar = ({ newNote, inTrash }) => (
   <div id="sidebar">
     <div id="elementContainer">
       <h1 id="logo">Postitfy</h1>
-      <ColorPicker />
+      <ColorPicker newNote={newNote} />
     </div>
     <img id="trash" src={!inTrash ? emptyBin : fullBin} alt="trash icon" />
   </div>

@@ -5,11 +5,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
 
-const ColorPicker = () => {
+const ColorPicker = ({ newNote }) => {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(!open);
+  };
+
+  const onAddNewNote = (color) => {
+    setOpen(false);
+    newNote(color);
   };
 
   return (
@@ -23,11 +28,26 @@ const ColorPicker = () => {
       </div>
       {open && (
         <div id="circleContainer">
-          <div className="circle yellow fadeIn" />
-          <div className="circle violet fadeIn" />
-          <div className="circle green fadeIn" />
-          <div className="circle blue fadeIn" />
-          <div className="circle orange fadeIn" />
+          <div
+            onClick={() => onAddNewNote("yellow")}
+            className="circle yellow fadeIn"
+          />
+          <div
+            onClick={() => onAddNewNote("violet")}
+            className="circle violet fadeIn"
+          />
+          <div
+            onClick={() => onAddNewNote("green")}
+            className="circle green fadeIn"
+          />
+          <div
+            onClick={() => onAddNewNote("blue")}
+            className="circle blue fadeIn"
+          />
+          <div
+            onClick={() => onAddNewNote("orange")}
+            className="circle orange fadeIn"
+          />
         </div>
       )}
     </>

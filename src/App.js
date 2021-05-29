@@ -2,16 +2,14 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Panel from "./components/Panel";
 import Sidebar from "./components/Sidebar";
-import Postit from "./components/Postit";
 import "./App.css";
 
 const App = () => {
+  localStorage.setItem("pepe mujica", "socialista");
   const [notes, setNotes] = useState([
     {
       id: 1,
       text: "Lorem Ipsum",
-      date: "22/01/2012",
-      category: "unknown",
       color: "orange",
       editing: false,
       active: true,
@@ -19,8 +17,6 @@ const App = () => {
     {
       id: 2,
       text: "Lorem Ipsumasdsad",
-      date: "22/01/2012",
-      category: "unknown",
       color: "violet",
       editing: false,
       active: true,
@@ -28,8 +24,6 @@ const App = () => {
     {
       id: 3,
       text: "Editable",
-      date: "22/01/2012",
-      category: "unknown",
       color: "green",
       editing: true,
       active: true,
@@ -39,6 +33,18 @@ const App = () => {
   const handleEditing = (id, action, payload) => {
     let updatedNotes = notes;
     switch (action) {
+      case "ADD":
+        setNotes([
+          ...notes,
+          {
+            id: Date.now(),
+            text: "",
+            color: payload,
+            editing: true,
+            active: true,
+          },
+        ]);
+        break;
       case "EDIT":
         updatedNotes = notes.map((note) => {
           if (note.id === id) {
@@ -84,13 +90,14 @@ const App = () => {
     }
   };
 
+  const onAddNewNote = (color) => handleEditing("", "ADD", color);
   const activeNotes = notes.filter((note) => note.active);
   const inTrash = notes.some((note) => note.active === false);
 
   return (
     <div id="layout">
       <Router>
-        <Sidebar inTrash={inTrash} />
+        <Sidebar newNote={onAddNewNote} inTrash={inTrash} />
         <Switch>
           <Route path="/">
             <Panel notes={activeNotes} handleNote={handleEditing} />
