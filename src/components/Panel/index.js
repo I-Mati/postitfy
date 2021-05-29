@@ -1,6 +1,6 @@
 import Sidebar from "../Sidebar";
 import Searchbar from "../Searchbar";
-import Dashboard from "../Dashboard";
+import Workspace from "../Workspace";
 import "./style.css";
 
 const Panel = () => (
@@ -8,7 +8,7 @@ const Panel = () => (
     <Sidebar />
     <div id="contentContainer">
       <Searchbar />
-      <Dashboard />
+      <Workspace />
     </div>
   </div>
 );
