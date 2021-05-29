@@ -12,7 +12,7 @@ import {
 import PropTypes from "prop-types";
 import "./style.css";
 
-const Postit = ({ text, date, category, color, editing, id, handleNote }) => {
+const Postit = ({ text, color, editing, id, handleNote }) => {
   const [valueText, setValueText] = useState(text);
 
   const onCancelHandle = () => {
@@ -63,15 +63,11 @@ const Postit = ({ text, date, category, color, editing, id, handleNote }) => {
 
 Postit.defaultValues = {
   text: "Lorem Ipsum",
-  date: "22/01/2012",
-  category: "unknown",
   color: "orange",
 };
 
 Postit.propTypes = {
   text: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
 };
 
