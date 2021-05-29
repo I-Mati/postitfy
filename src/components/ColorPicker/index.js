@@ -19,7 +19,7 @@ const ColorPicker = () => {
         className={!open ? "rotate-45" : "rotate-90"}
         onClick={handleOpen}
       >
-        <FontAwesomeIcon icon={faTimes} size="xs" />
+        <FontAwesomeIcon icon={faTimes} size="xs" color="white" />
       </div>
       {open && (
         <div id="circleContainer">
