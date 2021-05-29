@@ -1,15 +1,24 @@
+:root {
+  --gray: #e6e6e8;
+  --yellow: #ffd07d;
+  --orange: #ffa57e;
+  --blue: #01d9ff;
+  --green: #e8f09a;
+  --violet: #b591fc;
+}
+
 .yellow {
-  background-color: #ffd07d;
+  background-color: var(--yellow);
 }
 .orange {
-  background-color: #ffa57e;
+  background-color: var(--orange);
 }
 .blue {
-  background-color: #01d9ff;
+  background-color: var(--blue);
 }
 .green {
-  background-color: #e8f09a;
+  background-color: var(--green);
 }
 .violet {
-  background-color: #b591fc;
+  background-color: var(--violet);
 }
