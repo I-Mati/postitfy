@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
 
 const ColorPicker = () => {
@@ -12,16 +14,20 @@ const ColorPicker = () => {
 
   return (
     <>
-      <div id="plusButton" onClick={handleOpen}>
-        +
+      <div
+        id="plusButton"
+        className={!open ? "rotate-45" : "rotate-90"}
+        onClick={handleOpen}
+      >
+        <FontAwesomeIcon icon={faTimes} size="xs" />
       </div>
       {open && (
         <div id="circleContainer">
-          <div className="circle yellow" />
-          <div className="circle violet" />
-          <div className="circle green" />
-          <div className="circle blue" />
-          <div className="circle orange" />
+          <div className="circle yellow fadeIn" />
+          <div className="circle violet fadeIn" />
+          <div className="circle green fadeIn" />
+          <div className="circle blue fadeIn" />
+          <div className="circle orange fadeIn" />
         </div>
       )}
     </>
