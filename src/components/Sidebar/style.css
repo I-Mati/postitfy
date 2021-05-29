@@ -1,0 +1,11 @@
+#sidebar {
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#logo {
+  font-family: "Kaushan Script", cursive;
+  height: 8vh;
+}
