@@ -25,3 +25,7 @@ body {
 .violet {
   background-color: var(--violet);
 }
+
+#layout {
+  display: flex;
+}

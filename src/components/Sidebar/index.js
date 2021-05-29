@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import ColorPicker from "../ColorPicker";
 import emptyBin from "../../assets/empty-bin.png";
 import fullBin from "../../assets/full-bin.png";
