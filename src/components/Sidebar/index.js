@@ -6,22 +6,22 @@ import emptyBin from "../../assets/empty-bin.png";
 import fullBin from "../../assets/full-bin.png";
 import "./style.css";
 
-const Sidebar = ({ isTrashEmpty = true }) => (
+const Sidebar = ({ inTrash }) => (
   <div id="sidebar">
     <div id="elementContainer">
       <h1 id="logo">Postitfy</h1>
       <ColorPicker />
     </div>
-    <img id="trash" src={isTrashEmpty ? emptyBin : fullBin} alt="trash icon" />
+    <img id="trash" src={!inTrash ? emptyBin : fullBin} alt="trash icon" />
   </div>
 );
 
 Sidebar.defaultValues = {
-  isTrashEmpty: true,
+  inTrash: true,
 };
 
 Sidebar.propTypes = {
-  isTrashEmpty: PropTypes.number.isRequired,
+  inTrash: PropTypes.number.isRequired,
 };
 
 export default Sidebar;

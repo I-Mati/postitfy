@@ -1,8 +1,9 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import Postit from "../Postit";
 import "./style.css";
 
-const Workspace = ({ notes }) => {
+const Workspace = ({ notes, handleNote }) => {
   if (notes.length === 0)
     return (
       <div id="emptyState">
@@ -12,7 +13,7 @@ const Workspace = ({ notes }) => {
   return (
     <div id="workspaceContainer">
       {notes.map((note) => (
-        <Postit text={note.text} color={note.color} />
+        <Postit handleNote={handleNote} {...note} />
       ))}
     </div>
   );
