@@ -22,15 +22,12 @@ const Postit = ({ text, color, editing, id, handleNote }) => {
 
   return (
     <div id="postItContainer" className={color}>
-      {editing ? (
-        <input
-          id="postitInput"
-          value={valueText}
-          onChange={(e) => setValueText(e.target.value)}
-        />
-      ) : (
-        text
-      )}
+      <textarea
+        id="postitText"
+        value={valueText}
+        onChange={(e) => setValueText(e.target.value)}
+        disabled={!editing}
+      />
       <div id="actions">
         {!editing && (
           <div className="actionCircle" onClick={() => handleNote(id, "EDIT")}>

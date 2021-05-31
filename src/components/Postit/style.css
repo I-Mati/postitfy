@@ -1,6 +1,6 @@
 #postItContainer {
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   border-radius: 20px;
   color: black;
   padding: 1rem;
@@ -10,13 +10,20 @@
   justify-content: space-between;
 }
 
-#postitInput {
+#postitText {
   background: transparent;
-  font-size: 16px;
+  width: 100%;
+  font-size: 24px;
+  flex-grow: 1;
   border: none;
   outline: none;
   font-family: "Roboto", sans-serif;
 }
+
+#postitText:disabled {
+  color: black;
+}
+
 #actions {
   display: flex;
   justify-content: flex-end;
@@ -26,10 +33,10 @@
   cursor: pointer;
   width: 30px;
   height: 30px;
-  border-radius: 99%;
+  border-radius: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background: black;
-  margin-left: 1rem;
+  margin-left: 0.5rem;
 }
