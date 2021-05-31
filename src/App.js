@@ -69,6 +69,7 @@ const App = () => {
 
   const onAddNewNote = (color) => handleEditing("", "ADD", color);
   const activeNotes = notes.filter((note) => note.active);
+  const inactiveNotes = notes.filter((note) => note.active === false);
   const inTrash = notes.some((note) => note.active === false);
 
   return (
@@ -76,8 +77,15 @@ const App = () => {
       <Router>
         <Sidebar newNote={onAddNewNote} inTrash={inTrash} />
         <Switch>
+          <Route exact path="/trash">
+            <Panel title="Deleted Notes" notes={inactiveNotes} />
+          </Route>
           <Route path="/">
-            <Panel notes={activeNotes} handleNote={handleEditing} />
+            <Panel
+              title="Notes"
+              notes={activeNotes}
+              handleNote={handleEditing}
+            />
           </Route>
         </Switch>
       </Router>

@@ -5,9 +5,10 @@
   --blue: #01d9ff;
   --green: #e8f09a;
   --violet: #b591fc;
+  --font: "Roboto", sans-serif;
 }
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: var(--font);
 }
 
 .yellow {

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import ColorPicker from "../ColorPicker";
 import emptyBin from "../../assets/empty-bin.png";
 import fullBin from "../../assets/full-bin.png";
@@ -11,7 +12,9 @@ const Sidebar = ({ newNote, inTrash }) => (
       <h1 id="logo">Postitfy</h1>
       <ColorPicker newNote={newNote} />
     </div>
-    <img id="trash" src={!inTrash ? emptyBin : fullBin} alt="trash icon" />
+    <Link to="/trash">
+      <img id="trash" src={!inTrash ? emptyBin : fullBin} alt="trash icon" />{" "}
+    </Link>
   </div>
 );
 
