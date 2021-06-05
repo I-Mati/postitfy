@@ -1,10 +1,13 @@
-# Getting Started with Create React App
 ![Postitfy logo](https://github.com/I-Mati/postitfy/blob/develop/public/postify.png?raw=true)
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/I-Mati/postitfy)
 
-In the project directory, you can run:
+
+## What is this application?
+
+Postitfy is intended to be your best friend ✨, always at your fingertips! Seriously, it's a place where you can manage your notes and accomplish everything you want. 🚀🚀🚀
+
+It's easy! Access and start typing, no login is required (for now), don't worry about closing the browser; the data will be there waiting for you (with one limitation, it's only possible to access your data from the same device, be patient please, we will evolve 💪🏼)
 
 ### `npm start`
 
