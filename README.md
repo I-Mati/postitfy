@@ -1,5 +1,5 @@
 # Getting Started with Create React App
-![Postitfy logo](https://github.com/I-Mati/postitfy/blob/develop/public/postitfy.png?raw=true)
+![Postitfy logo](https://github.com/I-Mati/postitfy/blob/develop/public/postify.png?raw=true)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
