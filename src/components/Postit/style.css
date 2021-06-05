@@ -17,6 +17,7 @@
   flex-grow: 1;
   border: none;
   outline: none;
+  resize: none;
   font-family: "Roboto", sans-serif;
 }
 
