@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/jsx-props-no-spreading */
 import { useLocation, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,7 +8,7 @@ import Searchbar from "../Searchbar";
 import Postit from "../Postit";
 import "./style.css";
 
-const Panel = ({ title, notes, handleNote }) => {
+const Panel = ({ title, emptyStateText, notes, handleNote }) => {
   const location = useLocation();
   const isInTrash = location.pathname === "/trash";
 
@@ -19,15 +21,25 @@ const Panel = ({ title, notes, handleNote }) => {
     </div>
   );
 
+  const renderDeleteAll = () => (
+    <div onClick={() => handleNote("", "DELETEALL", {})} id="deleteAllButton">
+      Delete All
+    </div>
+  );
+
   if (notes.length === 0) {
     return (
       <div id="panelContainer">
         <div id="contentContainer">
           <Searchbar />
           {isInTrash && renderBack()}
-          <h1 id="containerTitle">{title}</h1>
+          <div id="titlecontainer">
+            <h1 id="title">{title}</h1>
+            {isInTrash && renderDeleteAll()}
+          </div>
+
           <div id="emptyState">
-            <h1>There are not notes, yet ;)</h1>
+            <h1>{emptyStateText}</h1>
           </div>
         </div>
       </div>
@@ -39,11 +51,14 @@ const Panel = ({ title, notes, handleNote }) => {
       <div id="contentContainer">
         <Searchbar />
         {isInTrash && renderBack()}
-        <h1 id="containerTitle">{title}</h1>
+        <div id="titlecontainer">
+          <h1 id="title">{title}</h1>
+          {isInTrash && renderDeleteAll()}
+        </div>
 
         <div id="workspaceContainer">
           {notes.map((note) => (
-            <Postit handleNote={handleNote} isInTrash={isInTrash} {...note} />
+            <Postit handleNote={handleNote} {...note} />
           ))}
         </div>
       </div>

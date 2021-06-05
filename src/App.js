@@ -49,10 +49,10 @@ const App = () => {
         });
         setNotes(updatedNotes);
         break;
-      case "NOTACTIVE":
+      case "INVERSEACTIVE":
         updatedNotes = notes.map((note) => {
           if (note.id === id) {
-            return { ...note, editing: false, active: false };
+            return { ...note, editing: false, active: !note.active };
           }
           return note;
         });
@@ -60,6 +60,10 @@ const App = () => {
         break;
       case "DELETE":
         updatedNotes = notes.filter((note) => note.id !== id);
+        setNotes(updatedNotes);
+        break;
+      case "DELETEALL":
+        updatedNotes = notes.filter((note) => note.active === true);
         setNotes(updatedNotes);
         break;
       default:
@@ -80,6 +84,7 @@ const App = () => {
           <Route exact path="/trash">
             <Panel
               title="Deleted Notes"
+              emptyStateText="Empty Trash ;)"
               notes={inactiveNotes}
               handleNote={handleEditing}
             />
@@ -87,6 +92,7 @@ const App = () => {
           <Route path="/">
             <Panel
               title="Notes"
+              emptyStateText="There are not notes, yet ;)"
               notes={activeNotes}
               handleNote={handleEditing}
             />

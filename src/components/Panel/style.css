@@ -9,7 +9,7 @@
   padding: 0 2rem;
 }
 
-#containerTitle {
+#title {
   margin-top: 15px;
 }
 
@@ -42,4 +42,21 @@
   color: var(--gray);
   font-size: 3rem;
   text-align: center;
+}
+
+#titlecontainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#deleteAllButton {
+  background-color: black;
+  border-radius: 8px;
+  color: white;
+  padding: 3px 15px;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
 }

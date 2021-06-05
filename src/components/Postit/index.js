@@ -7,20 +7,19 @@ import {
   faTimes,
   faCheck,
   faTrash,
+  faUndo,
 } from "@fortawesome/free-solid-svg-icons";
 
 import PropTypes from "prop-types";
 import "./style.css";
 
-const Postit = ({ text, color, editing, id, handleNote, isInTrash }) => {
+const Postit = ({ active, text, color, editing, id, handleNote }) => {
   const [valueText, setValueText] = useState(text);
 
   const onCancelHandle = () => {
     setValueText(text);
     handleNote(id, "CANCEL");
   };
-
-  console.log(isInTrash);
 
   return (
     <div id="postItContainer" className={color}>
@@ -47,9 +46,19 @@ const Postit = ({ text, color, editing, id, handleNote, isInTrash }) => {
             <div className="actionCircle" onClick={onCancelHandle}>
               <FontAwesomeIcon icon={faTimes} size="xs" color="white" />
             </div>
+            {active === false && (
+              <div
+                className="actionCircle"
+                onClick={() => handleNote(id, "INVERSEACTIVE")}
+              >
+                <FontAwesomeIcon icon={faUndo} size="xs" color="white" />
+              </div>
+            )}
             <div
               className="actionCircle"
-              onClick={() => handleNote(id, isInTrash ? "DELETE" : "NOTACTIVE")}
+              onClick={() =>
+                handleNote(id, active ? "INVERSEACTIVE" : "DELETE")
+              }
             >
               <FontAwesomeIcon icon={faTrash} size="xs" color="white" />
             </div>
