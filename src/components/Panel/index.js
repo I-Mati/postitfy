@@ -58,7 +58,7 @@ const Panel = ({ title, emptyStateText, notes, handleNote }) => {
 
         <div id="workspaceContainer">
           {notes.map((note) => (
-            <Postit handleNote={handleNote} {...note} />
+            <Postit key={note.id} handleNote={handleNote} {...note} />
           ))}
         </div>
       </div>
