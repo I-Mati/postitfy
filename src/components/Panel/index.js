@@ -10,11 +10,22 @@ const Panel = ({ title, notes, handleNote }) => {
   const location = useLocation();
   const isInTrash = location.pathname === "/trash";
 
+  const renderBack = () => (
+    <div id="backButton">
+      <Link to="/">
+        <FontAwesomeIcon icon={faAngleLeft} size="lg" />
+        Back
+      </Link>
+    </div>
+  );
+
   if (notes.length === 0) {
     return (
       <div id="panelContainer">
         <div id="contentContainer">
           <Searchbar />
+          {isInTrash && renderBack()}
+          <h1 id="containerTitle">{title}</h1>
           <div id="emptyState">
             <h1>There are not notes, yet ;)</h1>
           </div>
@@ -27,19 +38,12 @@ const Panel = ({ title, notes, handleNote }) => {
     <div id="panelContainer">
       <div id="contentContainer">
         <Searchbar />
-        {isInTrash && (
-          <div id="backButton">
-            <Link to="/">
-              <FontAwesomeIcon icon={faAngleLeft} size="lg" />
-              Back
-            </Link>
-          </div>
-        )}
+        {isInTrash && renderBack()}
         <h1 id="containerTitle">{title}</h1>
 
         <div id="workspaceContainer">
           {notes.map((note) => (
-            <Postit handleNote={handleNote} {...note} />
+            <Postit handleNote={handleNote} isInTrash={isInTrash} {...note} />
           ))}
         </div>
       </div>

@@ -12,13 +12,15 @@ import {
 import PropTypes from "prop-types";
 import "./style.css";
 
-const Postit = ({ text, color, editing, id, handleNote }) => {
+const Postit = ({ text, color, editing, id, handleNote, isInTrash }) => {
   const [valueText, setValueText] = useState(text);
 
   const onCancelHandle = () => {
     setValueText(text);
     handleNote(id, "CANCEL");
   };
+
+  console.log(isInTrash);
 
   return (
     <div id="postItContainer" className={color}>
@@ -47,7 +49,7 @@ const Postit = ({ text, color, editing, id, handleNote }) => {
             </div>
             <div
               className="actionCircle"
-              onClick={() => handleNote(id, "NOTACTIVE")}
+              onClick={() => handleNote(id, isInTrash ? "DELETE" : "NOTACTIVE")}
             >
               <FontAwesomeIcon icon={faTrash} size="xs" color="white" />
             </div>
