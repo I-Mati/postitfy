@@ -1,13 +1,28 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { useLocation, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import Searchbar from "../Searchbar";
-import Workspace from "../Workspace";
+import Postit from "../Postit";
 import "./style.css";
 
 const Panel = ({ title, notes, handleNote }) => {
   const location = useLocation();
   const isInTrash = location.pathname === "/trash";
+
+  if (notes.length === 0) {
+    return (
+      <div id="panelContainer">
+        <div id="contentContainer">
+          <Searchbar />
+          <div id="emptyState">
+            <h1>There are not notes, yet ;)</h1>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div id="panelContainer">
       <div id="contentContainer">
@@ -20,8 +35,13 @@ const Panel = ({ title, notes, handleNote }) => {
             </Link>
           </div>
         )}
-        <h1>{title}</h1>
-        <Workspace notes={notes} handleNote={handleNote} />
+        <h1 id="containerTitle">{title}</h1>
+
+        <div id="workspaceContainer">
+          {notes.map((note) => (
+            <Postit handleNote={handleNote} {...note} />
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 #searchContainer {
   height: 10vh;
+  margin-top: 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;

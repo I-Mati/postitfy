@@ -78,7 +78,11 @@ const App = () => {
         <Sidebar newNote={onAddNewNote} inTrash={inTrash} />
         <Switch>
           <Route exact path="/trash">
-            <Panel title="Deleted Notes" notes={inactiveNotes} />
+            <Panel
+              title="Deleted Notes"
+              notes={inactiveNotes}
+              handleNote={handleEditing}
+            />
           </Route>
           <Route path="/">
             <Panel
