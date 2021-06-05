@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Panel from "./components/Panel";
 import Sidebar from "./components/Sidebar";
@@ -6,6 +6,15 @@ import "./App.css";
 
 const App = () => {
   const [notes, setNotes] = useState([]);
+
+  useEffect(() => {
+    const localData = localStorage.getItem("postitfy");
+    if (localData) setNotes(JSON.parse(localData));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("postitfy", JSON.stringify(notes));
+  }, [notes]);
 
   const handleEditing = (id, action, payload) => {
     let updatedNotes = notes;
