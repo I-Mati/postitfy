@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Panel from "./components/Panel";
@@ -5,7 +6,10 @@ import Sidebar from "./components/Sidebar";
 import "./App.css";
 
 const App = () => {
+  const isInTrash = window.location.pathname === "/trash";
+
   const [notes, setNotes] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const localData = localStorage.getItem("postitfy");
@@ -85,6 +89,17 @@ const App = () => {
   const inactiveNotes = notes.filter((note) => note.active === false);
   const inTrash = notes.some((note) => note.active === false);
 
+  const filterNotes = (arrayNotes) =>
+    arrayNotes.filter((note) =>
+      note.text.toLowerCase().includes(search.toLowerCase())
+    );
+  const filteredNotes =
+    search === ""
+      ? []
+      : isInTrash
+      ? filterNotes(inactiveNotes)
+      : filterNotes(activeNotes);
+
   return (
     <div id="layout">
       <Router>
@@ -92,17 +107,25 @@ const App = () => {
         <Switch>
           <Route exact path="/trash">
             <Panel
+              editSearch={setSearch}
+              searchValue={search}
               title="Deleted Notes"
-              emptyStateText="Empty Trash ;)"
-              notes={inactiveNotes}
+              emptyStateText={
+                search !== ""
+                  ? "Empty Trash with this search"
+                  : "Empty Trash ;)"
+              }
+              notes={search !== "" ? filteredNotes : inactiveNotes}
               handleNote={handleEditing}
             />
           </Route>
           <Route path="/">
             <Panel
+              editSearch={setSearch}
+              searchValue={search}
               title="Notes"
               emptyStateText="There are not notes, yet ;)"
-              notes={activeNotes}
+              notes={search !== "" ? filteredNotes : activeNotes}
               handleNote={handleEditing}
             />
           </Route>

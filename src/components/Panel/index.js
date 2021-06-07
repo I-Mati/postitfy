@@ -8,7 +8,14 @@ import Searchbar from "../Searchbar";
 import Postit from "../Postit";
 import "./style.css";
 
-const Panel = ({ title, emptyStateText, notes, handleNote }) => {
+const Panel = ({
+  title,
+  emptyStateText,
+  notes,
+  handleNote,
+  searchValue,
+  editSearch,
+}) => {
   const location = useLocation();
   const isInTrash = location.pathname === "/trash";
 
@@ -27,40 +34,27 @@ const Panel = ({ title, emptyStateText, notes, handleNote }) => {
     </div>
   );
 
-  if (notes.length === 0) {
-    return (
-      <div id="panelContainer">
-        <div id="contentContainer">
-          <Searchbar />
-          {isInTrash && renderBack()}
-          <div id="titlecontainer">
-            <h1 id="title">{title}</h1>
-            {isInTrash && renderDeleteAll()}
-          </div>
-
-          <div id="emptyState">
-            <h1>{emptyStateText}</h1>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div id="panelContainer">
       <div id="contentContainer">
-        <Searchbar />
+        <Searchbar editSearch={editSearch} searchValue={searchValue} />
         {isInTrash && renderBack()}
         <div id="titlecontainer">
           <h1 id="title">{title}</h1>
           {isInTrash && renderDeleteAll()}
         </div>
-
-        <div id="workspaceContainer">
-          {notes.map((note) => (
-            <Postit key={note.id} handleNote={handleNote} {...note} />
-          ))}
-        </div>
+        {notes.length === 0 && (
+          <div id="emptyState">
+            <h1>{emptyStateText}</h1>
+          </div>
+        )}
+        {notes.length > 0 && (
+          <div id="workspaceContainer">
+            {notes.map((note) => (
+              <Postit key={note.id} handleNote={handleNote} {...note} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
