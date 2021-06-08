@@ -24,8 +24,15 @@ const App = () => {
     let updatedNotes = notes;
     switch (action) {
       case "ADD":
+        // Close other notes in editing mode
+        updatedNotes = notes.map((note) => {
+          if (note.active) {
+            return { ...note, editing: false };
+          }
+          return note;
+        });
         setNotes([
-          ...notes,
+          ...updatedNotes,
           {
             id: Date.now(),
             text: "",
@@ -115,7 +122,11 @@ const App = () => {
                   ? "Empty Trash with this search"
                   : "Empty Trash ;)"
               }
-              notes={search !== "" ? filteredNotes : inactiveNotes}
+              notes={
+                search !== ""
+                  ? filteredNotes.reverse()
+                  : inactiveNotes.reverse()
+              }
               handleNote={handleEditing}
             />
           </Route>
@@ -125,7 +136,9 @@ const App = () => {
               searchValue={search}
               title="Notes"
               emptyStateText="There are not notes, yet ;)"
-              notes={search !== "" ? filteredNotes : activeNotes}
+              notes={
+                search !== "" ? filteredNotes.reverse() : activeNotes.reverse()
+              }
               handleNote={handleEditing}
             />
           </Route>

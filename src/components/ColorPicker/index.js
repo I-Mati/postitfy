@@ -1,11 +1,13 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
 
 const ColorPicker = ({ newNote }) => {
+  const history = useHistory();
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -15,6 +17,7 @@ const ColorPicker = ({ newNote }) => {
   const onAddNewNote = (color) => {
     setOpen(false);
     newNote(color);
+    history.push("/");
   };
 
   return (

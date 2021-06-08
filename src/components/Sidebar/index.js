@@ -9,7 +9,9 @@ import "./style.css";
 const Sidebar = ({ newNote, inTrash }) => (
   <div id="sidebar">
     <div id="elementContainer">
-      <h1 id="logo">Postitfy</h1>
+      <Link to="/">
+        <h1 id="logo">Postitfy</h1>
+      </Link>
       <ColorPicker newNote={newNote} />
     </div>
     <Link to="/trash">
