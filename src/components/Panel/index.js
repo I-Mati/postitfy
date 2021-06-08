@@ -19,29 +19,28 @@ const Panel = ({
   const location = useLocation();
   const isInTrash = location.pathname === "/trash";
 
-  const renderBack = () => (
-    <div id="backButton">
-      <Link to="/">
-        <FontAwesomeIcon icon={faAngleLeft} size="lg" />
-        Back
-      </Link>
-    </div>
-  );
-
-  const renderDeleteAll = () => (
-    <div onClick={() => handleNote("", "DELETEALL", {})} id="deleteAllButton">
-      Delete All
-    </div>
-  );
-
   return (
     <div id="panelContainer">
       <div id="contentContainer">
         <Searchbar editSearch={editSearch} searchValue={searchValue} />
-        {isInTrash && renderBack()}
+        {isInTrash && (
+          <div id="backButton">
+            <Link to="/">
+              <FontAwesomeIcon icon={faAngleLeft} size="lg" />
+              Back
+            </Link>
+          </div>
+        )}
         <div id="titlecontainer">
           <h1 id="title">{title}</h1>
-          {isInTrash && renderDeleteAll()}
+          {isInTrash && (
+            <div
+              onClick={() => handleNote("", "DELETEALL", {})}
+              id="deleteAllButton"
+            >
+              Delete All
+            </div>
+          )}
         </div>
         {notes.length === 0 && (
           <div id="emptyState">
