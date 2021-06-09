@@ -3,9 +3,25 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Panel from "./components/Panel";
 import Sidebar from "./components/Sidebar";
+import Mobilebar from "./components/MobileBar";
 import "./App.css";
 
 const App = () => {
+  // this state and useEffects is to handle multiple resolutions devices
+  const [windowWidth, setWindowWidth] = useState(null);
+
+  const isInMobile = windowWidth < 601;
+  useEffect(() => {
+    function resize() {
+      setWindowWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", resize);
+    resize();
+    return () => {
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
   // Boolean indicate if the pathname is in trash,
   // we are unable to use react-router at this point
   // because this component is not wrapper in <Router>
@@ -27,7 +43,7 @@ const App = () => {
     localStorage.setItem("postitfy", JSON.stringify(notes));
   }, [notes]);
 
-  // Functions that handle all cases to manage data on local state.
+  // Function that handle all cases to manage data on local state.
   const handleEditing = (id, action, payload) => {
     let updatedNotes = notes;
     switch (action) {
@@ -109,24 +125,23 @@ const App = () => {
   // Boolean variable to determine if there are notes on trash to change trash icon
   const inTrash = notes.some((note) => note.active === false);
 
-  // filter function used on search to return notes that includes search word
-  const filterNotes = (arrayNotes) =>
-    arrayNotes.filter((note) =>
-      note.text.toLowerCase().includes(search.toLowerCase())
-    );
-
   // Filtered notes based on conditions, if something is searched in Active notes or Trash
   const filteredNotes =
     search === ""
       ? []
       : isInTrash
-      ? filterNotes(inactiveNotes)
-      : filterNotes(activeNotes);
+      ? arrayNotes.filter((note) =>
+          note.text.toLowerCase().includes(search.toLowerCase())
+        )
+      : arrayNotes.filter((note) =>
+          note.text.toLowerCase().includes(search.toLowerCase())
+        );
 
   return (
     <div id="layout">
       <Router>
-        <Sidebar newNote={onAddNewNote} inTrash={inTrash} />
+        {!isInMobile && <Sidebar newNote={onAddNewNote} inTrash={inTrash} />}
+        {isInMobile && <Mobilebar newNote={onAddNewNote} inTrash={inTrash} />}
         <Switch>
           <Route exact path="/trash">
             <Panel
