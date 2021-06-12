@@ -2,6 +2,8 @@
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/I-Mati/postitfy)
 
+[**DEMO**](http://postitfy..netlify.app "**DEMO**")
+
 ## What is this application?
 
 Postitfy is intended to be your best friend ✨, always at your fingertips! Seriously, it's a place where you can manage your notes and accomplish everything you want. 🚀🚀🚀
