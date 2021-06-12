@@ -41,3 +41,10 @@
   background: black;
   margin-left: 0.5rem;
 }
+
+@media (max-width: 600px) {
+  #postItContainer {
+    width: 250px;
+    height: 250px;
+  }
+}

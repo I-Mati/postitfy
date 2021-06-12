@@ -30,3 +30,13 @@ body {
 #layout {
   display: flex;
 }
+
+@media (max-width: 600px) {
+  #layout {
+    flex-direction: column;
+  }
+  #logo {
+    display: flex;
+    justify-content: center;
+  }
+}

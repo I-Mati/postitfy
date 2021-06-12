@@ -130,10 +130,10 @@ const App = () => {
     search === ""
       ? []
       : isInTrash
-      ? arrayNotes.filter((note) =>
+      ? notes.filter((note) =>
           note.text.toLowerCase().includes(search.toLowerCase())
         )
-      : arrayNotes.filter((note) =>
+      : notes.filter((note) =>
           note.text.toLowerCase().includes(search.toLowerCase())
         );
 
@@ -142,6 +142,7 @@ const App = () => {
       <Router>
         {!isInMobile && <Sidebar newNote={onAddNewNote} inTrash={inTrash} />}
         {isInMobile && <Mobilebar newNote={onAddNewNote} inTrash={inTrash} />}
+        {isInMobile && <h1 id="logo">Postitfy</h1>}
         <Switch>
           <Route exact path="/trash">
             <Panel
