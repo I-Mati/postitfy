@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faTrashAlt,
   faTimesCircle,
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
