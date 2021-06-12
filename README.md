@@ -2,72 +2,74 @@
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/I-Mati/postitfy)
 
-
 ## What is this application?
 
 Postitfy is intended to be your best friend ✨, always at your fingertips! Seriously, it's a place where you can manage your notes and accomplish everything you want. 🚀🚀🚀
 
 It's easy! Access and start typing, no login is required (for now), don't worry about closing the browser; the data will be there waiting for you (with one limitation, it's only possible to access your data from the same device, be patient please, we will evolve 💪🏼)
 
-### `npm start`
+### How to run this app
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+First, you will need to clone this repo
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+git clone https://github.com/I-Mati/postitfy/
+```
 
-### `npm test`
+Enter to the cloned project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+cd postitfy
+```
 
-### `npm run build`
+Then, you can start the app with
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+npm run start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Done! You have the app running on `localhost:3000`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### How to deploy this app
 
-### `npm run eject`
+Once you have your fork, you can make a prod build with
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+npm run build
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+If you are looking for something more straightforward, you can use "Deploy to Netlify" above after our logo, this going to make a personal deployment of this repo (or your fork) on your netlify account
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Technical Overview
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+For this project, we are using a few well-known libraries for React, such us
 
-## Learn More
+- Create React App
+- Font Awesome
+- React Router
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+We are also using eslint, with Airbnb configuration.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Folder Structure
 
-### Code Splitting
+The first technical decision was to divide the files in a common structure, that allows the developers to follow a common and clear pattern.
+Inside `src`, there is a `component` folder that has all the component in the next pattern:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+/components
+-/ComponentName
+---index.js
+---style.css
+```
 
-### Analyzing the Bundle Size
+This allows a better way to find the component file and the style at the same place.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Where is the data?
 
-### Making a Progressive Web App
+In this case, this project. is not using Redux or Context, to manage the data this app is using a single array state with objects (the postits) in App.js (main component) and passing them through props.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+To handle the changes in this array of postit, there is a function (`handleEditing`) that handles different scenarios based on a string parameter. Inside this function, s switch is used to identify each case, apply the change and make a new array and then, update the state, this function does not mutate the state directly.
 
-### Advanced Configuration
+### Data persistence
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This app is using localStorage to persistent the data introduced by the user, this has clear limitations but is enough to manage data locally on a device.
