@@ -46,9 +46,9 @@ If you are looking for something more straightforward, you can use "Deploy to Ne
 
 For this project, we are using a few well-known libraries for React, such us
 
-- Create React App
-- Font Awesome
-- React Router
+- Create React App: give a lot of tools to make React app fast and easily.
+- Font Awesome: the app uses a few icons that FA provide
+- React Router: the app has routing to on `/trash` URL, RR provides a smooth way to handle it
 
 We are also using eslint, with Airbnb configuration.
 
@@ -75,3 +75,10 @@ To handle the changes in this array of postit, there is a function (`handleEditi
 ### Data persistence
 
 This app is using localStorage to persistent the data introduced by the user, this has clear limitations but is enough to manage data locally on a device.
+
+### Custom commands
+
+There are few custom commands that you can invoke from the terminal to make specifics things:
+
+`lint`: Provide a linter verification of the files
+`lint:fix`: Run the linter and make changes to fix the problems when is possible.
